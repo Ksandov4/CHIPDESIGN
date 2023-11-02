@@ -19,7 +19,7 @@ always @(posedge clk or posedge reset) begin
         for (int i = 0; i < N; i = i + 1) begin
             randomvalues[i] <= 32'h0;
         end
-        enable <= 1'b0;
+        enable = 1'b0;
     end else if (enable) begin
         for (int i = 0; i < N; i = i + 1) begin
             randomvalues[i] <= $urandom; // Use $urandom for uniform distribution
