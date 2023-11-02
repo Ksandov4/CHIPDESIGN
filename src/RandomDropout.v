@@ -15,8 +15,9 @@ reg [31:0]randomvalue; //random value needed for the drpoout decision
 always @(posedge clk or posedge reset) begin 
     if (reset) begin
         randomvalue <= 32'h0; //if reset, we no longer need a random value set it to 0
+        enable <= 1'b0;
     end else if (enable) begin
-        randomvalue <= $random; //if enable, then generate the random number. 
+        randomvalue <= $urandom; //if enable, then generate the random number. 
     end
 end
 
