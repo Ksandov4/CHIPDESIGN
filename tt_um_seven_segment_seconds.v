@@ -11,50 +11,68 @@ module tt_um_seven_segment_seconds #( parameter MAX_COUNT = 24'd10_000_000 ) (
     input  wire       rst_n     // reset_n - low to reset
 );
 
-    wire reset = ! rst_n;
-    wire [6:0] led_out;
-    assign uo_out[6:0] = led_out;
-    assign uo_out[7] = 1'b0;
+    // Instantiate the RandomDropout module
+wire [N-1:0] dropoutdataout;
+assign ou_out = dropoutdataout;
+wire [N-1:0] dropoutdatain;
+assign dropoutdatain = ui_in;
+wire dropoutenable;
+wire dropoutreset;
 
-    // use bidirectionals as outputs
-    assign uio_oe = 8'b11111111;
+RandomDropout dropout_inst (
+    .clk(clk),
+    .reset(rst_n),
+    .enable(ena),
+    .datain(dropoutdatain),
+    .dataout(dropoutdataout)
+    );
 
-    // put bottom 8 bits of second counter out on the bidirectional gpio
-    assign uio_out = second_counter[7:0];
+    // wire reset = ! rst_n;
+    // wire [6:0] led_out;
+    // assign uo_out[6:0] = led_out;
+    // assign uo_out[7] = 1'b0;
 
-    // external clock is 10MHz, so need 24 bit counter
-    reg [23:0] second_counter;
-    reg [3:0] digit;
+    // // use bidirectionals as outputs
+    // assign uio_oe = 8'b11111111;
 
-    // if external inputs are set then use that as compare count
-    // otherwise use the hard coded MAX_COUNT
-    wire [23:0] compare = ui_in == 0 ? MAX_COUNT: {6'b0, ui_in[7:0], 10'b0};
+    // // put bottom 8 bits of second counter out on the bidirectional gpio
+    // assign uio_out = second_counter[7:0];
 
-    always @(posedge clk) begin
-        // if reset, set counter to 0
-        if (reset) begin
-            second_counter <= 0;
-            digit <= 0;
-        end else begin
-            // if up to 16e6
-            if (second_counter == compare) begin
-                // reset
-                second_counter <= 0;
+    // // external clock is 10MHz, so need 24 bit counter
+    // reg [23:0] second_counter;
+    // reg [3:0] digit;
 
-                // increment digit
-                digit <= digit + 1'b1;
+    // // if external inputs are set then use that as compare count
+    // // otherwise use the hard coded MAX_COUNT
+    // wire [23:0] compare = ui_in == 0 ? MAX_COUNT: {6'b0, ui_in[7:0], 10'b0};
 
-                // only count from 0 to 9
-                if (digit == 9)
-                    digit <= 0;
+    // always @(posedge clk) begin
+    //     // if reset, set counter to 0
+    //     if (reset) begin
+    //         second_counter <= 0;
+    //         digit <= 0;
+    //     end else begin
+    //         // if up to 16e6
+    //         if (second_counter == compare) begin
+    //             // reset
+    //             second_counter <= 0;
 
-            end else
-                // increment counter
-                second_counter <= second_counter + 1'b1;
-        end
-    end
+    //             // increment digit
+    //             digit <= digit + 1'b1;
+
+    //             // only count from 0 to 9
+    //             if (digit == 9)
+    //                 digit <= 0;
+
+    //         end else
+    //             // increment counter
+    //             second_counter <= second_counter + 1'b1;
+    //     end
+    // end
 
     // instantiate segment display
-    seg7 seg7(.counter(digit), .segments(led_out));
+    //seg7 seg7(.counter(digit), .segments(led_out));
+
+    
 
 endmodule
