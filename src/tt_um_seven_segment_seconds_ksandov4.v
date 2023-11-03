@@ -5,9 +5,8 @@ module tt_um_seven_segment_seconds_ksandov4 (
     input wire rst_n,    // Reset signal
     input wire ui_ena,   // Enable signal used to determine if dropout should occur
     input wire [7:0] ui_in, // Data input for 8 neurons
-    output wire [7:0] uo_out, // Data output for 8 neurons
-    output wire [7:0] uio_out, // Data output for 8 neurons
-    output wire [7:0] uio_oe // Output enable for 8 neurons
+    output wire [7:0] uo_out // Data output for 8 neurons
+     // Output enable for 8 neurons
 );
 
 dropout_module RandomDropout (
