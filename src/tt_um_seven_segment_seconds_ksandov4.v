@@ -3,7 +3,7 @@
 module tt_um_seven_segment_seconds_ksandov4 (
     input wire clk,      // Clock signal
     input wire rst_n,    // Reset signal
-    input wire ui_ena,   // Enable signal used to determine if dropout should occur
+    input wire ena,   // Enable signal used to determine if dropout should occur
     input wire [7:0] ui_in, // Data input for 8 neurons
     output wire [7:0] uo_out // Data output for 8 neurons
      // Output enable for 8 neurons
@@ -12,7 +12,7 @@ module tt_um_seven_segment_seconds_ksandov4 (
 dropout_module RandomDropout (
     .clk(clk),        // Connect clk from top module to dropout module
     .rst_n(rst_n),    // Connect rst_n from top module to dropout module
-    .ui_ena(ui_ena),  // Connect ui_ena from top module to dropout module
+    .ui_ena(ena),  // Connect ui_ena from top module to dropout module
     .ui_in(ui_in),    // Connect ui_in from top module to dropout module
     .uo_out(uo_out)   // Connect uo_out from dropout module to uo_out in the top module
 );
