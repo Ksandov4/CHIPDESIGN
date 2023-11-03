@@ -5,7 +5,7 @@ module RandomDropout (
     input wire reset,    // need reset as well
     input wire enable,   // enable used to determine if dropout should occur
     input wire [7:0] datain [0:7], // data in for 8 neurons
-    output wire [7:0] dataout [0:7] // data out for 8 neurons
+    output reg [7:0] dataout [0:7] // data out for 8 neurons
 );
 
 parameter dropoutrate = 0.5; // dropout rate can be changed, it represents the likelihood that a given value will be set to 0.

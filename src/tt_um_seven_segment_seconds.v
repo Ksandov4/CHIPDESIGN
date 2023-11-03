@@ -12,17 +12,18 @@ module tt_um_seven_segment_seconds #( parameter MAX_COUNT = 24'd10_000_000 ) (
 );
 
    
-wire [N-1:0] dropoutdataout;
-assign ou_out = dropoutdataout;
-wire [N-1:0] dropoutdatain;
-assign dropoutdatain = ui_in;
+wire [7:0] dropoutdataout;
+// assign ou_out = dropout_inst.dataout;
+// wire [N-1:0] dropoutdatain;
+// assign dropoutdatain = ui_in;
 
+assign uo_out = dropoutdataout;
 
 RandomDropout dropout_inst (
     .clk(clk),
     .reset(rst_n),
     .enable(ena),
-    .datain(dropoutdatain),
+    .datain(ui_in),
     .dataout(dropoutdataout)
     );
 
