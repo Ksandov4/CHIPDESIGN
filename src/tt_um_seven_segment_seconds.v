@@ -1,6 +1,6 @@
 `default_nettype none
 
-module tt_um_seven_segment_seconds (
+module tt_um_seven_segment_seconds_ksandov4 (
     input wire clk,      // Clock signal
     input wire rst_n,    // Reset signal
     input wire ui_ena,   // Enable signal used to determine if dropout should occur
