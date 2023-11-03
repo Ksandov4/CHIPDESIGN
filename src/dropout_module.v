@@ -23,7 +23,7 @@ always @(posedge clk or negedge rst_n) begin
     end else if (ui_ena) begin
         // Generate random weights for each neuron
         for (int i = 0; i < 8; i = i + 1) begin
-            dropout_weights[i] <= $random; // Replace this with your own random weight generation logic
+            dropout_weights[i] <= $urandom; // Replace this with your own random weight generation logic
         end
     end
 end
@@ -38,7 +38,7 @@ always @(posedge clk or negedge rst_n) begin
     end else if (ui_ena) begin
         // Apply dropout based on the hyperparameter dropout_rate
         for (int i = 0; i < 8; i = i + 1) begin
-            if ($random < dropout_rate) begin
+            if ($urandom < dropout_rate) begin
                 // Set output to 0 based on dropout rate
                 dropout_enabled_weights[i] <= 8'b0;
             end else begin
