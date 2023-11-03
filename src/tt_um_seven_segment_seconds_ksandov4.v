@@ -7,8 +7,8 @@ module tt_um_seven_segment_seconds_ksandov4 (
     input wire [7:0] ui_in, // Data input for 8 neurons
     output wire [7:0] uo_out,
     output wire [7:0] uio_out,  // IOs: Bidirectional Output path
-    output wire [7:0] uio_oe,
-    input wire [7:0] uio_in   // Data output for 8 neurons
+     output wire [7:0] uio_oe,
+     input wire [7:0] uio_in  // Data output for 8 neurons
      // Output enable for 8 neurons
 );
 
@@ -20,6 +20,8 @@ dropout_module RandomDropout (
     .uo_out(uo_out)   // Connect uo_out from dropout module to uo_out in the top module
 );
 
+assign uio_oe = 0;
+assign uio_out = 0;
 endmodule
 // module tt_um_seven_segment_seconds #(
 //     parameter MAX_COUNT = 24'd10_000_000
