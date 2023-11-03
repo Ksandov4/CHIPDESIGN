@@ -38,7 +38,10 @@ module tb ();
         .uo_out     (uo_out),   // Dedicated outputs   // IOs: Input path
         .ui_ena     (ui_ena),      // enable - goes high when design is selected
         .clk        (clk),      // clock
-        .rst_n      (rst_n)     // not reset
+        .rst_n      (rst_n),
+        .uio_out    (uio_out),
+        .uio_in     (uio_in),
+        .uio_oe     (uio_oe)     // not reset
         );
 
 endmodule
