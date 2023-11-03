@@ -15,9 +15,16 @@ module tt_um_seven_segment_seconds #(
 wire [7:0] dropoutdataout [0:7]; // Declare an array of wires to hold the dropout output
 wire [7:0] datain [0:7]; // Declare an array of wires to connect to datain
 
-assign datain = {ui_in, ui_in, ui_in, ui_in, ui_in, ui_in, ui_in, ui_in}; // Assign data to each element in the array
+assign datain[0] = ui_in;
+assign datain[1] = ui_in;
+assign datain[2] = ui_in;
+assign datain[3] = ui_in;
+assign datain[4] = ui_in;
+assign datain[5] = ui_in;
+assign datain[6] = ui_in;
+assign datain[7] = ui_in;
 
-RandomDropout dropout_inst [0:7] (
+RandomDropout dropout_inst (
     .clk(clk),
     .reset(rst_n),
     .enable(ena),
