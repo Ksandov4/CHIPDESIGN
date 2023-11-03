@@ -1,6 +1,5 @@
 `default_nettype none
 
-
 module RandomDropout (
     input wire clk,      // need a clock
     input wire reset,    // need reset as well
@@ -43,7 +42,6 @@ generate
 endgenerate
 
 endmodule
-
 // module RandomDropout (
 //     input wire clk,      // need a clock
 //     input wire reset,    // need reset as well
