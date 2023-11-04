@@ -6,6 +6,7 @@ from cocotb.triggers import RisingEdge, FallingEdge, Timer, ClockCycles
 async def test_my_design(dut):
     dut._log.info("start")
 
+
 # segments = [ 63, 6, 91, 79, 102, 109, 125, 7, 127, 111 ]
 
 # @cocotb.test()
