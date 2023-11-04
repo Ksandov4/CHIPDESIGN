@@ -9,7 +9,7 @@ TOPLEVEL_LANG ?= verilog
 ifneq ($(GATES),yes)
 
 # this is the only part you should need to modify:
-VERILOG_SOURCES += $(PWD)/tb.v $(PWD)/tt_um_seven_segment_seconds_ksandov4.v $(PWD)/RandomDropout.v
+VERILOG_SOURCES += $(PWD)/tb.v $(PWD)/tt_um_seven_segment_seconds_ksandov4.v $(PWD)/dropout_module.v
 
 else
 
